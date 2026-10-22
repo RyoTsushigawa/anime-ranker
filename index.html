@@ -366,6 +366,11 @@ const SAMPLE = [
   ['1535','Death Note','TV',37,8],['32281','Your Name.','Movie',1,0,8.5],['52991',"Frieren: Beyond Journey's End",'TV',28,9.5],
   ['32182','Mob Psycho 100','TV',12,8.5],['11061','Hunter x Hunter (2011)','TV',148,9],['5680','K-On!','TV',13,7.5],
   ['21','One Piece','TV',0,0,8.5],['20','Naruto','TV',220,7],
+  // one example show for each lower step, so every benchmark slot starts filled
+  ['11757','Sword Art Online','TV',25,6.5],['27899','Tokyo Ghoul √A','TV',12,6],['39617','The Promised Neverland Season 2','TV',11,5.5],
+  ['2476','School Days','TV',12,5],['32379','Berserk (2016)','TV',12,4.5],['32981','Hand Shakers','TV',12,4],
+  ['23079','Glasslip','TV',13,3.5],['34771','DYNAMIC CHORD','TV',12,3],['40074','GIBIATE','TV',12,2.5],
+  ['19315','Pupa','TV',12,2],['28929','VAMPIRE HOLMES','TV',12,1.5],['38853','EX-ARM','TV',12,1],['31904','Big Order','TV',10,0.5],
 ].map(([id,title,type,eps,old,site],e) => ({e,id,title,type,eps,old,site:site||0,status:'Completed'}));
 
 let S = null, pending = null, undoStack = [];
