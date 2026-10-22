@@ -1,0 +1,30 @@
+# Rebuilds db.json and cover-urls.json from AniList every Monday (and on demand from the Actions tab),
+# so new seasons, medians and covers show up on the site without anyone doing anything.
+name: Refresh AniList data
+
+on:
+  schedule:
+    - cron: '0 4 * * 1'   # Mondays 04:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Download every anime from AniList (about 20-30 minutes)
+        run: node build-db.mjs .
+      - name: Commit the new data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898299+github-actions[bot]@users.noreply.github.com"
+          git add db.json cover-urls.json
+          git diff --cached --quiet || git commit -m "Weekly AniList data refresh"
+          git push
